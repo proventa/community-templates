@@ -61,7 +61,7 @@ else
 fi
 <% elsif os_family == 'Freebsd' %>
 pkg install -y ipmitool
-<% elsif os_family == 'Debian' %>
+<% elsif os_family == 'Debian' || os_family == 'Rancheros' %>
 apt-get update
 apt-get install -y ipmitool
 <% end %>

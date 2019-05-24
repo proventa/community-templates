@@ -10,7 +10,7 @@ etc_path = (@host.operatingsystem.family == 'Freebsd') ? '/usr/local/etc/salt' :
 bin_path = (@host.operatingsystem.family == 'Freebsd') ? '/usr/local/bin' : '/usr/bin'
 %>
 
-<% if @host.operatingsystem.family == 'Debian' -%>
+<% if @host.operatingsystem.family == 'Debian' || @host.operatingsystem.family == 'Rancheros' -%>
 apt-get update
 apt-get install -y salt-minion
 <% elsif @host.operatingsystem.family == 'Freebsd' -%>

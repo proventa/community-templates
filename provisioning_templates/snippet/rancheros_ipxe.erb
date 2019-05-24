@@ -1,0 +1,16 @@
+<%#
+name: rancher_ipxe
+snippet: true
+model: ProvisioningTemplate
+kind: snippet
+%>
+# Boot a persistent RancherOS to RAM
+
+<% boot_files_uris = @host.operatingsystem.boot_files_uri(medium_provider) -%>
+<% kernel = boot_files_uris[0] -%>
+<% initrd = boot_files_uris[1] -%>
+
+kernel <%= kernel -%> rancher.state.dev=LABEL=RANCHER_STATE rancher.state.autoformat=[<%= host_param('install-disk') || '/dev/sda' %>] rancher.cloud_init.datasources=['url:<%= foreman_url('provision')-%>']
+initrd <%= initrd -%>
+
+boot

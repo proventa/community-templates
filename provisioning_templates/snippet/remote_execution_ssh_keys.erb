@@ -57,7 +57,7 @@ EOF
   command -v restorecon && restorecon -RvF <%= ssh_path %> || true
   
 <% if ssh_user != 'root' && host_param('remote_execution_effective_user_method') == 'sudo' -%>
-<% if @host.operatingsystem.family == 'Redhat' || @host.operatingsystem.family == 'Debian' -%>
+<% if @host.operatingsystem.family == 'Redhat' || @host.operatingsystem.family == 'Debian' || @host.operatingsystem.family == 'Rancheros' -%>
 echo "<%= ssh_user %> ALL = (root) NOPASSWD : ALL
 Defaults:<%= ssh_user %> !requiretty" > /etc/sudoers.d/<%= ssh_user %>
 <% elsif @host.operatingsystem.family == 'Suse' -%>

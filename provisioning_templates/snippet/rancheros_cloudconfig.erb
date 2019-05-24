@@ -50,3 +50,8 @@ users.each do |user|
   end
 end
 -%>
+runcmd:
+- curl -s <%= @static ? "'#{foreman_url('finish')}&static=true'" : foreman_url('finish') %> > /tmp/finish.sh
+- chmod +x /tmp/finish.sh
+- /tmp/finish.sh
+
