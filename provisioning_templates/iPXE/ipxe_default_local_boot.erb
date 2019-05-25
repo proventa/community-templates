@@ -5,6 +5,9 @@ name: iPXE default local boot
 snippet: false
 -%>
 #!ipxe
-
+<% if @host.operatingsystem.family == 'Rancheros'  -%>
+<%= snippet 'rancher_ipxe' %>
+<% else -%>
 # Skips booting from network and continues booting from next device
 exit
+<% end -%>
